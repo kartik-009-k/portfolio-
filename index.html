@@ -7,8 +7,12 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
 
+<!-- GSAP -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<!-- LENIS -->
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
 
 <style>
 :root{
@@ -21,6 +25,23 @@ body{
   color:white;
   font-family:'Space Grotesk',sans-serif;
   overflow-x:hidden;
+  cursor:none;
+}
+
+/* CUSTOM CURSOR */
+.cursor{
+  position:fixed;
+  width:20px;
+  height:20px;
+  border:2px solid var(--accent);
+  border-radius:50%;
+  pointer-events:none;
+  z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:transform 0.15s ease;
+}
+.cursor.big{
+  transform:translate(-50%,-50%) scale(2);
 }
 
 /* CHARACTER */
@@ -28,8 +49,6 @@ body{
   position:fixed;
   width:100%;
   height:100vh;
-  top:0;
-  left:0;
   z-index:5;
   pointer-events:none;
 }
@@ -46,62 +65,48 @@ body{
   position:absolute;
   top:40%;
   left:50%;
-  width:120px;
-  height:120px;
+  width:140px;
+  height:140px;
   transform:translate(-50%,-50%);
   background:radial-gradient(circle,var(--accent),transparent 70%);
   opacity:0;
-  filter:blur(25px);
+  filter:blur(30px);
 }
 .flicker{
   animation:flick 0.12s infinite alternate;
 }
 @keyframes flick{
   from{opacity:0.3}
-  to{opacity:0.6}
+  to{opacity:0.7}
 }
 
-/* SECTIONS */
+/* sections */
 section{
   height:100vh;
   display:flex;
   align-items:center;
   padding:0 10%;
-  position:relative;
   z-index:10;
+  position:relative;
 }
-
-.right{margin-left:auto; max-width:500px}
-.left{max-width:500px}
-.center{text-align:center;margin:auto}
-
-h1{font-size:4rem}
-h2{color:var(--accent);margin-bottom:10px}
-
 .card{
   background:rgba(255,255,255,0.03);
   padding:40px;
   border-left:3px solid var(--accent);
   backdrop-filter:blur(10px);
 }
+.right{margin-left:auto}
+.center{text-align:center;margin:auto}
 
-/* desk */
-#desk{opacity:0}
-
-/* timeline */
-.timeline{
-  border-left:2px solid #333;
-  padding-left:20px;
-}
-.timeline div{
-  margin-bottom:20px;
-}
+h1{font-size:4rem}
+h2{color:var(--accent)}
 </style>
 </head>
 
 <body>
 
-<!-- CHARACTER -->
+<div class="cursor"></div>
+
 <div id="viewport">
   <div id="char">
 
@@ -110,23 +115,20 @@ h2{color:var(--accent);margin-bottom:10px}
     <svg viewBox="0 0 100 120">
       <g stroke="white" stroke-width="2" fill="none" stroke-linecap="round">
 
-        <!-- HEAD -->
-        <circle id="head" cx="50" cy="25" r="10"/>
-        <circle id="eyeL" cx="47" cy="23" r="1" fill="#00f2ff"/>
-        <circle id="eyeR" cx="53" cy="23" r="1" fill="#00f2ff"/>
+        <g id="headGroup">
+          <circle id="head" cx="50" cy="25" r="10"/>
+          <circle id="eyeL" cx="47" cy="23" r="1" fill="#00f2ff"/>
+          <circle id="eyeR" cx="53" cy="23" r="1" fill="#00f2ff"/>
+        </g>
 
-        <!-- BODY -->
         <line x1="50" y1="35" x2="50" y2="70"/>
 
-        <!-- ARMS -->
         <line id="armL" x1="50" y1="45" x2="35" y2="60"/>
         <line id="armR" x1="50" y1="45" x2="65" y2="60"/>
 
-        <!-- LEGS -->
         <path id="legs" d="M40,100 L50,70 L60,100"/>
 
-        <!-- DESK -->
-        <g id="desk">
+        <g id="desk" opacity="0">
           <line x1="20" y1="95" x2="80" y2="95" stroke="#333"/>
           <rect x="35" y="75" width="30" height="20" stroke="#555"/>
         </g>
@@ -137,95 +139,122 @@ h2{color:var(--accent);margin-bottom:10px}
   </div>
 </div>
 
-<!-- HERO -->
 <section>
   <div class="card">
     <h1>Kartik Gaikwad</h1>
-    <p>Crafting a focused portfolio with motion, clarity, and ambition.</p>
-    <br>
-    <p style="color:var(--accent)">96.5% JEE Math • 93% Boards</p>
+    <p>Crafting motion, clarity, and ambition.</p>
   </div>
 </section>
 
-<!-- ABOUT -->
 <section>
   <div class="card right">
     <h2>About</h2>
-    <p>SOF IMO Rank 791 (92 percentile). Strong in math, logic, and structured problem solving.</p>
+    <p>96.5% JEE Math • IMO Rank 791 • Strong logic base</p>
   </div>
 </section>
 
-<!-- PROJECTS -->
 <section>
-  <div class="card left">
+  <div class="card">
     <h2>Projects</h2>
-    <p>Voice-driven calculator, core CS foundations, portfolio rebuild.</p>
+    <p>Voice calculator • Core CS • Portfolio rebuild</p>
   </div>
 </section>
 
-<!-- JOURNEY -->
 <section>
   <div class="center">
     <h2>Journey</h2>
-    <div class="timeline">
-      <div>2021 – Exploration</div>
-      <div>2022–25 – Academic Strength</div>
-      <div style="color:var(--accent)">Now – Refocused Growth</div>
-    </div>
+    <p>2021 → 2025 → Now</p>
   </div>
 </section>
 
-<!-- CONTACT -->
 <section>
   <div class="center">
     <h2>Contact</h2>
     <p>github.com/kartik-009-k</p>
-    <p>kartikgaikwad250@gmail.com</p>
   </div>
 </section>
 
 <script>
-gsap.registerPlugin(ScrollTrigger);
 
-/* MOUSE TRACK */
+/* LENIS SMOOTH */
+const lenis = new Lenis();
+function raf(time){
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+
+/* CURSOR */
+const cursor=document.querySelector(".cursor");
 window.addEventListener("mousemove",(e)=>{
-  let x=(e.clientX/window.innerWidth-0.5)*20;
-  let y=(e.clientY/window.innerHeight-0.5)*20;
+  cursor.style.left=e.clientX+"px";
+  cursor.style.top=e.clientY+"px";
+});
 
-  gsap.to("#head",{x:x,y:y,duration:0.4});
-  gsap.to(["#eyeL","#eyeR"],{x:x*0.5,y:y*0.5,duration:0.4});
+/* HOVER EFFECT */
+document.querySelectorAll("a, .card").forEach(el=>{
+  el.addEventListener("mouseenter",()=>cursor.classList.add("big"));
+  el.addEventListener("mouseleave",()=>cursor.classList.remove("big"));
+});
+
+/* BREATHING ANIMATION */
+gsap.to("#char",{
+  y:"+=10",
+  duration:2,
+  yoyo:true,
+  repeat:-1,
+  ease:"sine.inOut"
+});
+
+/* HEAD FOLLOW */
+window.addEventListener("mousemove",(e)=>{
+  let x=(e.clientX/window.innerWidth-0.5)*25;
+  let y=(e.clientY/window.innerHeight-0.5)*25;
+
+  gsap.to("#headGroup",{x,y,duration:0.4,ease:"power2.out"});
+});
+
+/* GLOW REACT */
+window.addEventListener("mousemove",(e)=>{
+  let intensity=Math.abs(e.clientX/window.innerWidth-0.5);
+  gsap.to("#glow",{opacity:intensity});
 });
 
 /* SCROLL STORY */
+gsap.registerPlugin(ScrollTrigger);
+
 let tl=gsap.timeline({
   scrollTrigger:{
     trigger:"body",
     start:"top top",
     end:"bottom bottom",
-    scrub:1
+    scrub:1.5
   }
 });
 
 /* HERO → ABOUT */
-tl.to("#char",{left:"25%",scale:0.8});
+tl.to("#char",{left:"25%",scale:0.85,ease:"power3.inOut"});
 
 /* ABOUT → PROJECTS */
-tl.to("#char",{left:"60%"});
+tl.to("#char",{left:"60%",rotation:5});
 
-/* SIT + DESK */
+/* SIT */
 tl.to("#desk",{opacity:1})
 .to("#legs",{attr:{d:"M30,90 L50,70 L70,90"}}, "<")
-.to("#glow",{opacity:1,onStart:()=>document.getElementById("glow").classList.add("flicker")}, "<");
+.to("#armL",{attr:{x2:45,y2:80}}, "<")
+.to("#armR",{attr:{x2:55,y2:80}}, "<")
+.to("#glow",{opacity:0.6,onStart:()=>glow.classList.add("flicker")}, "<");
 
-/* PROJECTS → JOURNEY */
+/* PROJECT → JOURNEY */
 tl.to("#desk",{opacity:0})
 .to("#glow",{opacity:0})
 .to("#legs",{attr:{d:"M40,100 L50,70 L60,100"}})
-.to("#char",{left:"80%"});
+.to("#char",{left:"80%",rotation:-5});
 
-/* FINAL CENTER */
-tl.to("#char",{left:"50%",scale:1.2});
+/* FINAL */
+tl.to("#char",{left:"50%",scale:1.2,rotation:0});
+
 </script>
 
 </body>
-          </html>
+</html>
