@@ -1,82 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kartik Gaikwad | Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kartik Gaikwad</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
 
-  <!-- GSAP -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<style>
+:root{
+  --bg:#0a0a0a;
+  --accent:#00f2ff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:var(--bg);
+  color:white;
+  font-family:'Space Grotesk',sans-serif;
+  overflow-x:hidden;
+}
+
+/* CHARACTER */
+#viewport{
+  position:fixed;
+  width:100%;
+  height:100vh;
+  top:0;
+  left:0;
+  z-index:5;
+  pointer-events:none;
+}
+#char{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:220px;
+}
+
+/* glow */
+#glow{
+  position:absolute;
+  top:40%;
+  left:50%;
+  width:120px;
+  height:120px;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle,var(--accent),transparent 70%);
+  opacity:0;
+  filter:blur(25px);
+}
+.flicker{
+  animation:flick 0.12s infinite alternate;
+}
+@keyframes flick{
+  from{opacity:0.3}
+  to{opacity:0.6}
+}
+
+/* SECTIONS */
+section{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  padding:0 10%;
+  position:relative;
+  z-index:10;
+}
+
+.right{margin-left:auto; max-width:500px}
+.left{max-width:500px}
+.center{text-align:center;margin:auto}
+
+h1{font-size:4rem}
+h2{color:var(--accent);margin-bottom:10px}
+
+.card{
+  background:rgba(255,255,255,0.03);
+  padding:40px;
+  border-left:3px solid var(--accent);
+  backdrop-filter:blur(10px);
+}
+
+/* desk */
+#desk{opacity:0}
+
+/* timeline */
+.timeline{
+  border-left:2px solid #333;
+  padding-left:20px;
+}
+.timeline div{
+  margin-bottom:20px;
+}
+</style>
 </head>
+
 <body>
 
-<!-- Stickman -->
-<div class="stickman-container">
-  <svg id="stickman" viewBox="0 0 100 200">
-    <!-- Head -->
-    <circle id="head" cx="50" cy="30" r="15"/>
-    <circle id="eyeL" cx="45" cy="28" r="2"/>
-    <circle id="eyeR" cx="55" cy="28" r="2"/>
+<!-- CHARACTER -->
+<div id="viewport">
+  <div id="char">
 
-    <!-- Body -->
-    <line x1="50" y1="45" x2="50" y2="100"/>
+    <div id="glow"></div>
 
-    <!-- Arms -->
-    <line id="armL" x1="50" y1="60" x2="30" y2="80"/>
-    <line id="armR" x1="50" y1="60" x2="70" y2="80"/>
+    <svg viewBox="0 0 100 120">
+      <g stroke="white" stroke-width="2" fill="none" stroke-linecap="round">
 
-    <!-- Legs -->
-    <line x1="50" y1="100" x2="30" y2="140"/>
-    <line x1="50" y1="100" x2="70" y2="140"/>
-  </svg>
+        <!-- HEAD -->
+        <circle id="head" cx="50" cy="25" r="10"/>
+        <circle id="eyeL" cx="47" cy="23" r="1" fill="#00f2ff"/>
+        <circle id="eyeR" cx="53" cy="23" r="1" fill="#00f2ff"/>
 
-  <!-- Desk -->
-  <div class="desk"></div>
+        <!-- BODY -->
+        <line x1="50" y1="35" x2="50" y2="70"/>
+
+        <!-- ARMS -->
+        <line id="armL" x1="50" y1="45" x2="35" y2="60"/>
+        <line id="armR" x1="50" y1="45" x2="65" y2="60"/>
+
+        <!-- LEGS -->
+        <path id="legs" d="M40,100 L50,70 L60,100"/>
+
+        <!-- DESK -->
+        <g id="desk">
+          <line x1="20" y1="95" x2="80" y2="95" stroke="#333"/>
+          <rect x="35" y="75" width="30" height="20" stroke="#555"/>
+        </g>
+
+      </g>
+    </svg>
+
+  </div>
 </div>
 
-<!-- Sections -->
-<section class="panel hero">
-  <h1>Kartik Gaikwad</h1>
-  <p>Crafting a focused portfolio with motion, clarity, and ambition.</p>
-  <div class="stats">
-    <span>96.5% JEE Math Percentile</span>
-    <span>93% Class 10 Boards</span>
+<!-- HERO -->
+<section>
+  <div class="card">
+    <h1>Kartik Gaikwad</h1>
+    <p>Crafting a focused portfolio with motion, clarity, and ambition.</p>
+    <br>
+    <p style="color:var(--accent)">96.5% JEE Math • 93% Boards</p>
   </div>
 </section>
 
-<section class="panel about">
-  <h2>About</h2>
-  <p>
-    Academic consistency meets curiosity. Strong foundation in mathematics and problem solving.
-    SOF IMO Grade 9 – International Rank 791 (92 percentile).
-  </p>
+<!-- ABOUT -->
+<section>
+  <div class="card right">
+    <h2>About</h2>
+    <p>SOF IMO Rank 791 (92 percentile). Strong in math, logic, and structured problem solving.</p>
+  </div>
 </section>
 
-<section class="panel projects">
-  <h2>Projects</h2>
-  <ul>
-    <li><strong>Voice-Driven Calculator</strong> – MIT App Inventor, speech I/O</li>
-    <li><strong>Core CS Foundations</strong> – Assembly + C++ problem solving</li>
-    <li><strong>Portfolio Rebuild</strong> – Motion UI & branding focus</li>
-  </ul>
+<!-- PROJECTS -->
+<section>
+  <div class="card left">
+    <h2>Projects</h2>
+    <p>Voice-driven calculator, core CS foundations, portfolio rebuild.</p>
+  </div>
 </section>
 
-<section class="panel journey">
-  <h2>Journey</h2>
-  <p>2021 → Early Apps</p>
-  <p>2022–25 → Academic Peak</p>
-  <p>Now → Refocus + Scholarship Aspirant</p>
+<!-- JOURNEY -->
+<section>
+  <div class="center">
+    <h2>Journey</h2>
+    <div class="timeline">
+      <div>2021 – Exploration</div>
+      <div>2022–25 – Academic Strength</div>
+      <div style="color:var(--accent)">Now – Refocused Growth</div>
+    </div>
+  </div>
 </section>
 
-<section class="panel contact">
-  <h2>Contact</h2>
-  <p>Let’s build something meaningful.</p>
+<!-- CONTACT -->
+<section>
+  <div class="center">
+    <h2>Contact</h2>
+    <p>github.com/kartik-009-k</p>
+    <p>kartikgaikwad250@gmail.com</p>
+  </div>
 </section>
 
-<script src="script.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+/* MOUSE TRACK */
+window.addEventListener("mousemove",(e)=>{
+  let x=(e.clientX/window.innerWidth-0.5)*20;
+  let y=(e.clientY/window.innerHeight-0.5)*20;
+
+  gsap.to("#head",{x:x,y:y,duration:0.4});
+  gsap.to(["#eyeL","#eyeR"],{x:x*0.5,y:y*0.5,duration:0.4});
+});
+
+/* SCROLL STORY */
+let tl=gsap.timeline({
+  scrollTrigger:{
+    trigger:"body",
+    start:"top top",
+    end:"bottom bottom",
+    scrub:1
+  }
+});
+
+/* HERO → ABOUT */
+tl.to("#char",{left:"25%",scale:0.8});
+
+/* ABOUT → PROJECTS */
+tl.to("#char",{left:"60%"});
+
+/* SIT + DESK */
+tl.to("#desk",{opacity:1})
+.to("#legs",{attr:{d:"M30,90 L50,70 L70,90"}}, "<")
+.to("#glow",{opacity:1,onStart:()=>document.getElementById("glow").classList.add("flicker")}, "<");
+
+/* PROJECTS → JOURNEY */
+tl.to("#desk",{opacity:0})
+.to("#glow",{opacity:0})
+.to("#legs",{attr:{d:"M40,100 L50,70 L60,100"}})
+.to("#char",{left:"80%"});
+
+/* FINAL CENTER */
+tl.to("#char",{left:"50%",scale:1.2});
+</script>
+
 </body>
-  </html>
+          </html>
