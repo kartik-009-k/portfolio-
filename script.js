@@ -57,3 +57,42 @@ tl.to("#armL", { attr: { x2: 30, y2: 80 } })
 .to(".stickman-container", {
   xPercent: 0
 });
+
+gsap.registerPlugin(ScrollTrigger);
+
+let tl = gsap.timeline({
+  scrollTrigger: {
+    trigger: "body",
+    start: "top top",
+    end: "bottom bottom",
+    scrub: 1.5
+  }
+});
+
+/* HERO → ABOUT */
+tl.to("spline-viewer", {
+  x: "-15%",
+  y: "5%",
+  scale: 1.1,
+  ease: "power3.inOut"
+});
+
+/* ABOUT → PROJECTS */
+tl.to("spline-viewer", {
+  x: "20%",
+  y: "-5%",
+  scale: 1.05
+});
+
+/* PROJECTS (FOCUS MOMENT) */
+tl.to("spline-viewer", {
+  scale: 1.2,
+  y: "0%",
+  duration: 1
+});
+
+/* JOURNEY */
+tl.to("spline-viewer", {
+  x: "0%",
+  scale: 1
+});
