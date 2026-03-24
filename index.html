@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kartik Gaikwad | Portfolio</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+<!-- Stickman -->
+<div class="stickman-container">
+  <svg id="stickman" viewBox="0 0 100 200">
+    <!-- Head -->
+    <circle id="head" cx="50" cy="30" r="15"/>
+    <circle id="eyeL" cx="45" cy="28" r="2"/>
+    <circle id="eyeR" cx="55" cy="28" r="2"/>
+
+    <!-- Body -->
+    <line x1="50" y1="45" x2="50" y2="100"/>
+
+    <!-- Arms -->
+    <line id="armL" x1="50" y1="60" x2="30" y2="80"/>
+    <line id="armR" x1="50" y1="60" x2="70" y2="80"/>
+
+    <!-- Legs -->
+    <line x1="50" y1="100" x2="30" y2="140"/>
+    <line x1="50" y1="100" x2="70" y2="140"/>
+  </svg>
+
+  <!-- Desk -->
+  <div class="desk"></div>
+</div>
+
+<!-- Sections -->
+<section class="panel hero">
+  <h1>Kartik Gaikwad</h1>
+  <p>Crafting a focused portfolio with motion, clarity, and ambition.</p>
+  <div class="stats">
+    <span>96.5% JEE Math Percentile</span>
+    <span>93% Class 10 Boards</span>
+  </div>
+</section>
+
+<section class="panel about">
+  <h2>About</h2>
+  <p>
+    Academic consistency meets curiosity. Strong foundation in mathematics and problem solving.
+    SOF IMO Grade 9 – International Rank 791 (92 percentile).
+  </p>
+</section>
+
+<section class="panel projects">
+  <h2>Projects</h2>
+  <ul>
+    <li><strong>Voice-Driven Calculator</strong> – MIT App Inventor, speech I/O</li>
+    <li><strong>Core CS Foundations</strong> – Assembly + C++ problem solving</li>
+    <li><strong>Portfolio Rebuild</strong> – Motion UI & branding focus</li>
+  </ul>
+</section>
+
+<section class="panel journey">
+  <h2>Journey</h2>
+  <p>2021 → Early Apps</p>
+  <p>2022–25 → Academic Peak</p>
+  <p>Now → Refocus + Scholarship Aspirant</p>
+</section>
+
+<section class="panel contact">
+  <h2>Contact</h2>
+  <p>Let’s build something meaningful.</p>
+</section>
+
+<script src="script.js"></script>
+</body>
+  </html>
